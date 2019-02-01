@@ -45,7 +45,7 @@ set +x
 echo "Pruning target..."
 
 pushd $osjs
-  npm prune
+  NODE_ENV=production npm prune
   modclean -r
 popd
 
