@@ -1,0 +1,1 @@
+useradd -M -s /dev/null -G scanner,plugdev,netdev,cdrom,floppy,lp,tape,audio,video,disk,dialout,users osjs
