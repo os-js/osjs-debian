@@ -34,6 +34,7 @@ cp -r node_modules $osjs/
 cp -r src/client $osjs/src/
 cp -r src/server $osjs/src/
 cp -r src/debian $dest/DEBIAN
+cp packages.json $osjs/
 cp package.json $osjs/
 cp package-lock.json $osjs/
 cp bin/run.sh $osjs/bin/
