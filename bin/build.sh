@@ -4,8 +4,8 @@ set -e
 root=$(pwd)
 dest="build"
 osjs="$dest/opt/osjs"
-package_name=$(grep ^Source src/debian/control | awk '{print $2}')
-package_version=$(grep ^Version src/debian/control | awk '{print $2}')
+package_name=$(grep -m1 ^Source src/debian/control | awk '{print $2}')
+package_version=$(grep -m1 ^Version src/debian/control | awk '{print $2}')
 package_filename="$package_name-$package_version"
 
 echo "*** Starting creation of $package_filename ***"
