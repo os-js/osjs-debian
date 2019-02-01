@@ -42,7 +42,7 @@ module.exports = {
   port: 8000,
   public: path.resolve(root, 'dist'),
   vfs: {
-    root: process.NODE_ENV === 'production'
+    root: process.env.NODE_ENV === 'production'
       ? path.resolve('/home')
       : path.join(process.cwd(), 'vfs')
   }

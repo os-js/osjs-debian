@@ -1,6 +1,6 @@
 {
   "name": "@osjs/osjs-debian",
-  "version": "1.0.0-debian-1",
+  "version": "1.0.0-1",
   "description": "OS.js v3 Debian Image",
   "main": "index.js",
   "scripts": {
