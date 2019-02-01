@@ -23,6 +23,7 @@ mkdir -p $dest/etc/systemd/system
 echo "Building..."
 
 npm install --no-progress
+npm run package:discover -- --copy &> /dev/null
 NODE_ENV=production npm run build &> /dev/null
 
 echo "Copying image files..."
