@@ -28,51 +28,20 @@
 # @licence Simplified BSD License
 #
 
-# THIS IS ONLY INTENDED FOR DEVELOPMENT USAGE
+FROM debian:stretch
 
-# Build: docker build -t username/osjs:dev
-# Using docker-compose is recommended
-# You can freely modify this file
+ENV DEBIAN_FRONTEND noninteractive
 
-FROM node:10
+# Base dependencies
+RUN apt-get update
+RUN apt-get install -y curl devscripts debhelper
 
-# Default Environment
-ARG NODE_ENV=production
-ARG NODE_PORT=8000
-ARG DOCKER_UID=1000
-ARG DOCKER_GID=1000
-ENV NODE_ENV $NODE_ENV
+# OS.js dependencies
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get install -y nodejs libpam-dev
+RUN npm install -g modclean
 
-# Set user/group IDs
-RUN usermod -u ${DOCKER_UID} node; exit 0
-RUN groupmod -g ${DOCKER_GID} node; exit 0
+# Clean up
+RUN rm -rf /var/lib/apt/lists/*
 
-# Set up base dirs and permissions
-RUN mkdir -p /usr/src/osjs/dist/{apps,icons,themes}
-
-# Install system dependencies
-RUN npm install -g nodemon
-
-# Working area
 WORKDIR /usr/src/osjs
-
-# Copy our npm setup
-COPY . .
-
-# Set the correct user
-RUN chown -R node:node /usr/src/osjs
-USER node
-
-# Install dependencies
-RUN NODE_ENV=development npm install
-
-# Discover packages
-RUN npm run package:discover
-
-# Build OS.js
-RUN npm run build
-
-# Start the node server
-EXPOSE $NODE_PORT
-
-CMD npm run serve

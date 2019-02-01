@@ -33,12 +33,12 @@
 // Guide: https://manual.os-js.org/v3/config/#client
 // Complete config tree: https://github.com/os-js/osjs-client/blob/master/src/config.js
 //
+const login = process.NODE_ENV === 'production'
+  ? {}
+  : {username: 'demo', password: 'demo'};
 
 module.exports = {
   auth: {
-    login: {
-      username: 'demo',
-      password: 'demo'
-    }
+    login
   }
 };

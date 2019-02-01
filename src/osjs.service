@@ -1,0 +1,15 @@
+[Unit]
+Description=OS.js Node Server
+Documentation=https://manual.os-js.org
+After=network.target
+
+[Service]
+Environment=NODE_ENV=production
+Type=simple
+User=osjs
+ExecStart=/opt/osjs/bin/run.sh
+Restart=on-failure
+WorkingDirectory=/opt/osjs
+
+[Install]
+WantedBy=multi-user.target

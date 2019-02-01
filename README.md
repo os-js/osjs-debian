@@ -2,7 +2,7 @@
   <img alt="OS.js Logo" src="https://raw.githubusercontent.com/os-js/gfx/master/logo-big.png" />
 </p>
 
-# OS.js v3
+# OS.js v3 Debian Package
 
 [OS.js](https://www.os-js.org/) is an [open-source](https://raw.githubusercontent.com/os-js/OS.js/master/LICENSE) desktop implementation for your browser with a fully-fledged window manager, Application APIs, GUI toolkits and filesystem abstraction.
 
@@ -13,71 +13,43 @@
 [![Donate](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://paypal.me/andersevenrud)
 [![Community](https://img.shields.io/badge/join-community-green.svg)](https://community.os-js.org/)
 
-This is the OS.js base project that you can use as a template to make your own distributions, installations and do general development.
+## Introduction
 
-> **This is v3. For v2 (deprecated) see the `master` branch.**
+This repository builds a `.deb` package (with Docker) you can install OS.js on a Debian/Ubuntu system directly.
 
-## Try it yourself
+Contains a custom OS.js distro build and provides a systemd unit that starts the server upon boot.
 
-Visit the [official demo](https://demo.os-js.org/v3/) for a preview version. Please note that some features are disabled and might be outdated or unavailable at times.
-
-![ScreenShot](https://www.os-js.org/screenshot.png)
+*You can use this as a template for making deployments on embedded platforms etc.*
 
 ## Requirements
 
-Node 8 (or newer) and any modern web-browser.
+You only need docker. Works on any host system.
 
-## Installation
+## Usage
 
-> OS.js runs on `localhost:8000` by default.
+Run `docker-compose run osjs` and a package is placed in the root directory.
 
-### Demo
+> Note that the first time you run this command it will build the docker image, which is only done once, but might take a while.
 
-You can run a demo using docker without checkout out any source-code:
+The `build/` directory contains the sources of the built package.
 
-```
-docker run -p 8000:8000 osjs/osjs:v3
-```
+## Development
 
-### Manual
+When the docker image builds the package, `NODE_ENV` is set to `production` which will enable features only applicable to the debian environment.
 
-```
-# Clone *only* the v3 branch
-git clone -b v3 --single-branch https://github.com/os-js/OS.js.git
-cd OS.js
-```
+This way you can still develop changes without using a live environment.
 
-#### Locally
+The only chaveat is that the docker image shares the storage volume with the root directory, so you have wo wipe `node_modules/` before running it on your host system.
 
-```
-# Install dependencies
-npm install
+## Info
 
-# It's recommended that you keep your dependencies (including OS.js) up-to-date
-npm update
+The debian package installs into `/opt/osjs`.
 
-# Optionally install extra packages:
-# For a list of packages, see https://manual.os-js.org/v3/resource/official/
-npm install --production @osjs/example-application
+The resulting build has been pruned, so it's a bit more lightweight than a "regular installation".
 
-# Discover installed packages
-npm run package:discover
+## TODO
 
-# Build your client
-npm run build
-
-# Start serving
-npm run serve
-```
-
-#### Docker
-
-You can also build a Docker image yourself or use docker-compose:
-
-```
-cp .env.example .env
-docker-compose up
-```
+- [ ] Add multiple arch
 
 ## Contribution
 

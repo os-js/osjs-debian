@@ -5,3 +5,5 @@ node_modules
 /sessions
 /.env*
 /session-store.db
+/*.deb
+/build

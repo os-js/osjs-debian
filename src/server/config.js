@@ -40,5 +40,10 @@ const root = path.resolve(__dirname, '../../');
 module.exports = {
   root,
   port: 8000,
-  public: path.resolve(root, 'dist')
+  public: path.resolve(root, 'dist'),
+  vfs: {
+    root: process.NODE_ENV === 'production'
+      ? path.resolve('/home')
+      : path.join(process.cwd(), 'vfs')
+  }
 }

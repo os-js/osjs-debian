@@ -47,13 +47,20 @@ const {
   SettingsServiceProvider
 } = require('@osjs/server');
 
+const pamAuth = require('@osjs/pam-auth');
 const config = require('./config.js');
 const osjs = new Core(config, {});
 
 osjs.register(CoreServiceProvider, {before: true});
 osjs.register(PackageServiceProvider);
 osjs.register(VFSServiceProvider);
-osjs.register(AuthServiceProvider);
+osjs.register(AuthServiceProvider, {
+  args: {
+    adapter: process.NODE_ENV === 'production'
+      ? pamAuth
+      : null
+  }
+});
 osjs.register(SettingsServiceProvider);
 
 process.on('SIGTERM', () => osjs.destroy());

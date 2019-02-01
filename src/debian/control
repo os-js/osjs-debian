@@ -1,0 +1,12 @@
+Source: osjs
+Version: 1.0.0-1
+Maintainer: Anders Evenrud <andersevenrud@gmail.com>
+Section: net
+Priority: optional
+Standards-Version: 3.9.3
+Build-Depends: debhelper (>= 9)
+Package: osjs
+Architecture: amd64
+Depends: nodejs (>= 8)
+Description: OS.js
+  OS.js Client and Server

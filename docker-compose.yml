@@ -28,26 +28,12 @@
 # @licence Simplified BSD License
 #
 
-# THIS IS ONLY INTENDED FOR DEVELOPMENT USAGE
-
-# Start: docker-compose up
-# You can freely modify this file
-
 version: '3'
 
 services:
   osjs:
     build:
       context: .
-      args:
-        - NODE_ENV=${DOCKER_NODE_ENV}
-        - DOCKER_UID=${DOCKER_UID:-1000}
-        - DOCKER_GID=${DOCKER_GID:-1000}
-    environment:
-      - NODE_ENV=${DOCKER_NODE_ENV}
-    command: nodemon --watch package-lock.json --watch src/server --watch src/packages src/server/index.js
+    command: ./bin/build.sh
     volumes:
-      - ./src:/usr/src/osjs/src
-      - ./vfs:/usr/src/osjs/vfs
-    ports:
-      - "${DOCKER_NODE_PORT}:8000"
+      - .:/usr/src/osjs
