@@ -41,6 +41,8 @@ This way you can still develop changes without using a live environment.
 
 The only chaveat is that the docker image shares the storage volume with the root directory, so you have wo wipe `node_modules/` before running it on your host system.
 
+The version number is set from `package.json`.
+
 ## Info
 
 The debian package installs into `/opt/osjs`.

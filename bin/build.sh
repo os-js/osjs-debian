@@ -4,8 +4,8 @@ set -e
 root=$(pwd)
 dest="build"
 osjs="$dest/opt/osjs"
-package_name=$(grep -m1 ^Source src/debian/control | awk '{print $2}')
-package_version=$(grep -m1 ^Version src/debian/control | awk '{print $2}')
+package_name="osjs"
+package_version=$(cat package.json | jq -r ".version")
 package_filename="$package_name-$package_version"
 
 echo "*** Starting creation of $package_filename ***"
@@ -41,6 +41,7 @@ cp bin/run.sh $osjs/bin/
 cp README.md $osjs/
 cp LICENSE $osjs/
 cp src/osjs.service $dest/etc/systemd/system/
+sed -i "s/VERSION/${package_version}/g" $dest/DEBIAN/control
 set +x
 
 echo "Pruning target..."
@@ -52,7 +53,6 @@ popd
 
 echo "Making deb..."
 
-dpkg-deb --build $dest
-mv build.deb "${package_filename}.deb"
+dpkg-deb --build $dest "${package_filename}.deb"
 
 echo "Done (${package_filename}.deb) :)"

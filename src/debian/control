@@ -1,16 +1,9 @@
-Source: osjs
-Version: 1.0.0-1
-Maintainer: Anders Evenrud <andersevenrud@gmail.com>
+Package: osjs
 Section: net
 Priority: optional
-Standards-Version: 3.9.3
-Build-Depends: nodejs (>= 8), debhelper (>= 9)
-Description: OS.js debian build sources
-  OS.js debian build sources
-
-Package: osjs
-Version: 1.0.0-1
 Architecture: amd64
+Maintainer: "Anders Evenrud" <andersevenrud@gmail.com>
+Version: VERSION
 Depends: nodejs (>= 8)
 Description: OS.js debian build
   OS.js Client and Server build
