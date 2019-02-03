@@ -52,6 +52,7 @@ The resulting build has been pruned, so it's a bit more lightweight than a "regu
 ## TODO
 
 - [ ] Add multiple arch
+- [ ] Add electron launcher
 
 ## Contribution
 
