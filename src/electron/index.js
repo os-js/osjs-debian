@@ -18,7 +18,9 @@ const createWindow = () => {
 
   win.loadURL(url);
 
-  if (!production) {
+  if (production) {
+    win.setMenu(null);
+  } else {
     win.webContents.openDevTools()
   }
 
