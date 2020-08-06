@@ -33,8 +33,6 @@ cp -r node_modules $osjs/
 cp -r src/server $osjs/
 cp -r src/debian $dest/DEBIAN
 cp packages.json $osjs/
-cp package.json $osjs/
-cp package-lock.json $osjs/
 cp bin/run.sh $osjs/bin/
 cp bin/run-electron.sh $osjs/bin/
 echo "https://github.com/os-js/OS.js" > $osjs/README
