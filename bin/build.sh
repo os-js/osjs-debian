@@ -12,11 +12,11 @@ echo "*** Starting creation of $package_filename ***"
 
 echo "Setting up directories..."
 
-if [[ -d build ]]; then
-  rm -rf build/
+if [[ -d $dest ]]; then
+  rm -rf $dest
 fi
 
-mkdir -p $osjs/bin
+mkdir -p $osjs/bin $live
 
 echo "Building..."
 
@@ -50,8 +50,6 @@ pushd $osjs
   modclean -r
 popd
 
-echo "Making deb..."
+echo "Making ${package_filename}.deb"
 
 dpkg-deb --build $dest "${package_filename}.deb"
-
-echo "Done (${package_filename}.deb) :)"

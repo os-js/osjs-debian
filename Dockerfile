@@ -34,7 +34,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Base dependencies
 RUN apt-get update
-RUN apt-get install -y curl devscripts debhelper jq
+RUN apt-get install -y curl devscripts debhelper jq live-build
 
 # OS.js dependencies
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -

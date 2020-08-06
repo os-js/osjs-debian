@@ -28,30 +28,19 @@ You only need docker. Works on any host system.
 ## Usage
 
 ```
-Build the initial base image
+# Build the initial base image (only once)
 $ docker build -t osjs/debian .
 
-Build OS.js
-$ docker run -v "${PWD}:/usr/src/osjs" osjs/debian bin/build.sh
+# Build debian package (./*.deb)
+$ docker run --privileged -v "${PWD}:/usr/src/osjs" osjs/debian bin/build.sh
+
+# Build live image (./live-default)
+$ docker run --privileged -v "${PWD}:/usr/src/osjs" osjs/debian bin/image.sh
 ```
 
-The `build/` directory contains the sources of the built package.
+## Links
 
-## Development
-
-When the docker image builds the package, `NODE_ENV` is set to `production` which will enable features only applicable to the debian environment.
-
-This way you can still develop changes without using a live environment.
-
-The only chaveat is that the docker image shares the storage volume with the root directory, so you have wo wipe `node_modules/` before running it on your host system.
-
-The version number is set from `package.json`.
-
-## Info
-
-The debian package installs into `/opt/osjs`.
-
-The resulting build has been pruned, so it's a bit more lightweight than a "regular installation".
+- https://live-team.pages.debian.net/live-manual/html/live-manual/index.en.html
 
 ## TODO
 
