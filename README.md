@@ -27,9 +27,13 @@ You only need docker. Works on any host system.
 
 ## Usage
 
-Run `docker-compose run osjs` and a package is placed in the root directory.
+```
+Build the initial base image
+$ docker build -t osjs/debian .
 
-> Note that the first time you run this command it will build the docker image, which is only done once, but might take a while.
+Build OS.js
+$ docker run -v "${PWD}:/usr/src/osjs" osjs/debian bin/build.sh
+```
 
 The `build/` directory contains the sources of the built package.
 
@@ -52,7 +56,6 @@ The resulting build has been pruned, so it's a bit more lightweight than a "regu
 ## TODO
 
 - [ ] Add multiple arch
-- [ ] Add electron launcher
 
 ## Contribution
 

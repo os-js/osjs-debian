@@ -17,30 +17,29 @@ if [[ -d build ]]; then
 fi
 
 mkdir -p $osjs/bin
-mkdir -p $osjs/src
-mkdir -p $dest/etc/systemd/system
 
 echo "Building..."
 
 npm install --no-progress
-npm run package:discover -- --copy &> /dev/null
-NODE_ENV=production npm run build &> /dev/null
+npm update --no-progress
+npm run package:discover -- --copy
+NODE_ENV=production npm run build -- --display minimal
 
 echo "Copying image files..."
 
 set -x
 cp -r dist $osjs/
 cp -r node_modules $osjs/
-cp -r src/client $osjs/src/
-cp -r src/server $osjs/src/
+cp -r src/server $osjs/
 cp -r src/debian $dest/DEBIAN
 cp packages.json $osjs/
 cp package.json $osjs/
 cp package-lock.json $osjs/
 cp bin/run.sh $osjs/bin/
-cp README.md $osjs/
+cp bin/run-electron.sh $osjs/bin/
+echo "https://github.com/os-js/OS.js" > $osjs/README
 cp LICENSE $osjs/
-cp src/osjs.service $dest/etc/systemd/system/
+cp -r src/etc $dest/
 sed -i "s/VERSION/${package_version}/g" $dest/DEBIAN/control
 set +x
 
