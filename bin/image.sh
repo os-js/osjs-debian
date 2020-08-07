@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 set -e
 
-live="live-default"
+dest="build/live"
 
 echo "*** Making Live Image ***"
 
-if [[ -d $live ]]; then
-  rm -rf $live
+if [[ -d $dest ]]; then
+  rm -rf $dest
 fi
 
-mkdir -p $live
-cd $live
+mkdir -p $dest
+cd $dest
 lb config
 lb build
+
+mv $dest/live-image-amd64.hybrid.iso build/

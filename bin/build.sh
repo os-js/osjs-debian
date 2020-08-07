@@ -2,7 +2,7 @@
 set -e
 
 root=$(pwd)
-dest="build"
+dest="build/deb"
 osjs="$dest/opt/osjs"
 package_name="osjs"
 package_version=$(cat package.json | jq -r ".version")
@@ -18,16 +18,18 @@ fi
 
 mkdir -p $osjs/bin $live
 
-echo "Building..."
+echo "Installing required packages..."
 
 npm install --no-progress
 npm update --no-progress
 npm run package:discover -- --copy
+
+echo "Building solutions..."
+
 NODE_ENV=production npm run build -- --display minimal
 
-echo "Copying image files..."
+echo "Copying files..."
 
-set -x
 cp -r dist $osjs/
 cp -r node_modules $osjs/
 cp -r src/server $osjs/
@@ -39,15 +41,14 @@ echo "https://github.com/os-js/OS.js" > $osjs/README
 cp LICENSE $osjs/
 cp -r src/etc $dest/
 sed -i "s/VERSION/${package_version}/g" $dest/DEBIAN/control
-set +x
 
-echo "Pruning target..."
+echo "Pruning node dependencies..."
 
 pushd $osjs
   NODE_ENV=production npm prune
   modclean -r
 popd
 
-echo "Making ${package_filename}.deb"
+echo "Making debian package..."
 
-dpkg-deb --build $dest "${package_filename}.deb"
+dpkg-deb --build $dest "build/${package_filename}.deb"
