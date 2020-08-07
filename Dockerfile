@@ -44,7 +44,14 @@ RUN apt-get update && \
     libpam-dev && \
   rm -rf /var/lib/apt/lists/*
 
+# Debian does not have a proper npm version
 RUN npm install -g npm
+
+# Then install globals
 RUN npm install -g modclean
+
+# Solves "umount: chroot/sys: umount failed: No such file or directory."
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=919659
+RUN sed -i '1161s%umount%#umount%' /usr/share/debootstrap/functions
 
 WORKDIR /usr/src/osjs

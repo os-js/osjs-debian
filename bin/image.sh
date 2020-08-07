@@ -25,4 +25,4 @@ pushd $dest
   lb build
 popd
 
-mv $dest/live-image-amd64.hybrid.iso build/
+mv $dest/live-image-amd64.iso build/
