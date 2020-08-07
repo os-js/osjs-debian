@@ -1,6 +1,6 @@
 # osjs-debian
 
-This repository builds a `.deb` package and `.iso` live image for Debian.
+This repository builds a `.deb` package and `.iso` live image for Debian Buster.
 
 **Currently only produces x86 builds and is only intended for experimentation**
 
@@ -39,7 +39,6 @@ Brief overview of the build results:
 
 Contains the following:
 
-* creates 'osjs' system user
 * systemd service for the server
 * systemd service for the X11 server
 * electron launcher
@@ -50,7 +49,7 @@ Contains the following:
 
 ### Live image
 
-A Debian live image (based on standard image) that has the debian package installed.
+A Debian Buster live image (based on standard image) that has the debian package installed.
 
 ## Links
 

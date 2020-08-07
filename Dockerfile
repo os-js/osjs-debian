@@ -28,20 +28,23 @@
 # @licence Simplified BSD License
 #
 
-FROM debian:stretch
+FROM debian:buster
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# Base dependencies
-RUN apt-get update
-RUN apt-get install -y curl devscripts debhelper jq live-build
+RUN apt-get update && \
+  apt-get install -y \
+    curl \
+    devscripts \
+    debhelper \
+    jq \
+    live-build \
+    nodejs \
+    npm \
+    libpam-dev && \
+  rm -rf /var/lib/apt/lists/*
 
-# OS.js dependencies
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-RUN apt-get install -y nodejs libpam-dev
+RUN npm install -g npm
 RUN npm install -g modclean
-
-# Clean up
-RUN rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/osjs
