@@ -25,10 +25,10 @@ Then use one of the following build scripts:
 
 ```
 # Build debian package
-$ docker run -v "${PWD}:/usr/src/osjs" osjs/debian bin/build.sh
+$ docker run -v "${PWD}:/usr/src/osjs" osjs/debian build.sh
 
 # Build live ISO image
-$ docker run --privileged -v "${PWD}:/usr/src/osjs" osjs/debian bin/image.sh
+$ docker run --privileged -v "${PWD}:/usr/src/osjs" osjs/debian image.sh
 ```
 
 ## Builds
