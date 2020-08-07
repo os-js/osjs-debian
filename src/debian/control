@@ -4,6 +4,6 @@ Priority: optional
 Architecture: amd64
 Maintainer: "Anders Evenrud" <andersevenrud@gmail.com>
 Version: VERSION
-Depends: nodejs (>= 8)
+Depends: nodejs (>= 10)
 Description: OS.js debian build
   OS.js Client and Server build

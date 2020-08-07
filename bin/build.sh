@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 set -e
 
+arch=$(dpkg --print-architecture)
 dest="build/deb"
 osjs="$dest/opt/osjs"
 package_name="osjs"
 package_version=$(cat package.json | jq -r ".version")
 package_filename="$package_name-$package_version"
 
-echo "*** Starting creation of $package_filename ***"
+uname -a
+lsb_release -a
+echo "*** Starting build... ***"
 
 if [[ -d $dest ]]; then
   rm -rf $dest
@@ -44,4 +47,4 @@ pushd $osjs
 popd
 
 echo "Making debian package..."
-dpkg-deb --build $dest "build/${package_filename}.deb"
+dpkg-deb --build $dest "build/${package_filename}_${arch}.deb"

@@ -3,6 +3,8 @@ set -e
 
 dest="build/live"
 
+uname -a
+lsb_release -a
 echo "*** Making Live Image ***"
 
 if [[ -d $dest ]]; then
@@ -14,7 +16,7 @@ mkdir -p $dest
 
 echo "Configuring live image..."
 pushd $dest
-  lb config -b iso --memtest none
+  lb config -b iso --memtest none --distribution buster
   cp ../*.deb config/packages.chroot/
   echo "xorg" >> config/package-lists/osjs.list.chroot
   echo "nodejs" >> config/package-lists/osjs.list.chroot
