@@ -17,7 +17,7 @@ if [[ -d $dest ]]; then
 fi
 
 echo "Setting up directories..."
-mkdir -p $osjs/bin $live
+mkdir -p $osjs $live
 
 echo "Installing required packages..."
 npm install --no-progress
@@ -30,11 +30,11 @@ NODE_ENV=production npm run build -- --display minimal
 echo "Copying files..."
 cp -r dist $osjs/
 cp -r node_modules $osjs/
+cp -r src/bin $osjs/
 cp -r src/server $osjs/
 cp -r src/debian $dest/DEBIAN
 cp packages.json $osjs/
-cp bin/run.sh $osjs/bin/
-cp bin/run-electron.sh $osjs/bin/
+
 echo "https://github.com/os-js/OS.js" > $osjs/README
 cp LICENSE $osjs/
 cp -r src/etc $dest/
