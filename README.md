@@ -2,7 +2,7 @@
 
 This repository builds a `.deb` package and `.iso` live image for Debian.
 
-**Currently only produces x86 builds**
+**Currently only produces x86 builds and is only intended for experimentation**
 
 ## Requirements
 
@@ -30,6 +30,27 @@ $ docker run --privileged -v "${PWD}:/usr/src/osjs" osjs/debian bin/build.sh
 # Build live ISO image
 $ docker run --privileged -v "${PWD}:/usr/src/osjs" osjs/debian bin/image.sh
 ```
+
+## Builds
+
+Brief overview of the build results:
+
+### Debian package
+
+Contains the following:
+
+* creates 'osjs' system user
+* systemd service for the server
+* systemd service for the X11 server
+* electron launcher
+* server with PAM authentication
+* client without sources
+
+**Do not install this in a regular installation of Debian as this sets up service that runs X11 in a privileged mode.**
+
+### Live image
+
+A Debian live image (based on standard image) that has the debian package installed.
 
 ## Links
 
