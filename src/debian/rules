@@ -3,7 +3,12 @@
 export DH_VERBOSE=1
 
 %:
-	dh $@
+    dh $@ --with-systemd
+
+override_dh_auto_install:
+    dh_auto_install
+    dh_systemd_enable || true
+    dh_systemd_start || true
 
 clean:
 	dh clean

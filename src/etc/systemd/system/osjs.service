@@ -7,7 +7,7 @@ After=network.target
 Environment=NODE_ENV=production
 Type=simple
 User=user
-StartExec=/opt/osjs/bin/run.sh
+ExecStart=/opt/osjs/bin/run.sh
 Restart=on-failure
 WorkingDirectory=/opt/osjs
 

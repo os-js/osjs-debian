@@ -2,7 +2,7 @@
 
 This repository builds a `.deb` package and `.iso` live image for Debian Buster.
 
-**Currently only produces x86 builds and is only intended for experimentation**
+**Currently only produces host architecture builds and is only intended for experimentation**
 
 ## Requirements
 
@@ -25,10 +25,10 @@ Then use one of the following build scripts:
 
 ```
 # Build debian package
-$ docker run -v "${PWD}:/usr/src/osjs" osjs/debian build.sh
+$ docker run -v "${PWD}:/usr/src/osjs" osjs/debian ./build.sh
 
 # Build live ISO image
-$ docker run --privileged -v "${PWD}:/usr/src/osjs" osjs/debian image.sh
+$ docker run --privileged -v "${PWD}:/usr/src/osjs" osjs/debian ./image.sh
 ```
 
 ## Builds
@@ -44,8 +44,6 @@ Contains the following:
 * electron launcher
 * server with PAM authentication
 * client without sources
-
-**Do not install this in a regular installation of Debian as this sets up service that runs X11 in a privileged mode.**
 
 ### Live image
 

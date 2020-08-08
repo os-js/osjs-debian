@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+#
+# @author Anders Evenrud <<andersevenrud@gmail.com>
+# @license MIT
+#
 set -e
 
 arch=$(dpkg --print-architecture)
@@ -21,7 +25,6 @@ mkdir -p $osjs $live
 
 echo "Installing required packages..."
 npm install --no-progress
-npm update --no-progress
 npm run package:discover -- --copy
 
 echo "Building solutions..."
