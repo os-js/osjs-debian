@@ -6,8 +6,8 @@ After=network.target
 [Service]
 Environment=NODE_ENV=production
 Type=simple
-User=osjs
-ExecStart=/opt/osjs/bin/run.sh
+User=user
+StartExec=/opt/osjs/bin/run.sh
 Restart=on-failure
 WorkingDirectory=/opt/osjs
 

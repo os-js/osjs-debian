@@ -3,8 +3,8 @@ After=systemd-user-sessions.service
 After=osjs.service
 
 [Service]
-User=kioskuser
-StartExec=/bin/bash -c 'startx /etc/X11/Xsession /opt/osjs/bin/run-electron.sh --'
+User=user
+ExecStart=/bin/bash -c 'startx /etc/X11/Xsession /opt/osjs/bin/run-electron.sh --'
 WorkingDirectory=/opt/osjs
 
 [Install]
